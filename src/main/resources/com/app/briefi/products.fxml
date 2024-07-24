@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.briefi.controllers.ProductController">
+    <children>
+        <VBox>
+            <children>
+                <VBox prefHeight="387.0" prefWidth="422.0">
+                    <children>
+                        <HBox>
+                            <children>
+                                <Label text="Liste des produits">
+                                    <font>
+                                        <Font name="Arial Black" size="11.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets left="10.0" top="20.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <Button mnemonicParsing="false" onAction="#onCreateProduct" prefHeight="126.0" prefWidth="54.0" style="-fx-background-color: #3185FC;" text="créer" textFill="#fffdfd">
+                                    <HBox.margin>
+                                        <Insets bottom="10.0" left="245.0" top="10.0" />
+                                    </HBox.margin>
+                                </Button>
+                            </children>
+                        </HBox>
+                        <TableView fx:id="productsTableView">
+                            <columns>
+                                <TableColumn fx:id="nameCol" prefWidth="99.0" text="Nom du produit" />
+                                <TableColumn fx:id="descriptionCol" minWidth="0.0" prefWidth="101.0" text="Description" />
+                                <TableColumn fx:id="quantityCol" prefWidth="75.0" text="Quantité" />
+                                <TableColumn fx:id="thresholdQuantityCol" prefWidth="134.0" text="Seuil stock" />
+                            </columns>
+                        </TableView>
+                        <HBox>
+                            <children>
+                        <Text fx:id="productsCountText" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="éléments">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Text>
+                                <HBox alignment="TOP_RIGHT">
+                                    <children>
+                                        <Button fx:id="updateButton" alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onUpdateProduct" style="-fx-background-color: #e88a0c;" text="Modifier" textFill="#fcfcfc">
+                                            <font>
+                                                <Font size="8.0" />
+                                            </font>
+                                 <HBox.margin>
+                                    <Insets top="10.0" />
+                                 </HBox.margin>
+                                        </Button>
+                                        <Button fx:id="deleteButton" alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onDeleteProduct" style="-fx-background-color: #e84855;" text="Suprimer" textFill="#f5f5f5">
+                                            <font>
+                                                <Font name="Arial" size="10.0" />
+                                            </font>
+                                            <HBox.margin>
+                                                <Insets left="10.0" top="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets left="150.0" />
+                                    </HBox.margin>
+                                </HBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+        <VBox fx:id="modalCoverVBox" alignment="CENTER" prefHeight="150.0" prefWidth="100.0" style="-fx-background-color: #fff;" styleClass="modal-cover" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox prefHeight="31.0" prefWidth="338.0">
+                    <children>
+                  <HBox HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets left="14.0" top="10.0" />
+                     </HBox.margin>
+                     <children>
+                        <Text fx:id="productLabelText" strokeType="OUTSIDE" strokeWidth="0.0" text="Creer un produit " />
+                     </children>
+                  </HBox>
+                  <Button mnemonicParsing="false" onAction="#onHideModal" text="Fermer" textFill="#e84855">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                    </children>
+                </HBox>
+                <HBox prefHeight="31.0" prefWidth="338.0">
+                    <children>
+                        <Label text=" Remplir les informations du produit que vous voulez créer">
+                            <font>
+                                <Font size="10.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="11.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="4.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox>
+                    <children>
+                        <ComboBox fx:id="categoriesComboBox" prefHeight="26.0" prefWidth="386.0" promptText="Selectionner une categorie" HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets left="13.0" />
+                            </HBox.margin>
+                        </ComboBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="20.0" top="10.0" />
+                    </VBox.margin>
+                </HBox>
+                  <TextField fx:id="nameTextField" promptText="Nom du produit">
+               <VBox.margin>
+                  <Insets left="10.0" right="20.0" />
+               </VBox.margin>
+                  </TextField>
+                <HBox>
+                    <children>
+                        <TextField fx:id="descriptionTextField" maxWidth="1.7976931348623157E308" promptText="Description du produit" HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="12.0" right="20.0" top="5.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+                <HBox>
+                    <children>
+                        <Label contentDisplay="CENTER" prefHeight="17.0" prefWidth="88.0" text="Quantité">
+                            <HBox.margin>
+                                <Insets left="11.0" top="5.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="quantityTextField" promptText="Quantité" HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets left="-2.0" right="18.0" top="6.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+                <HBox prefHeight="50.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Quantité seuil">
+                            <HBox.margin>
+                                <Insets left="9.0" top="5.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="thresholdQuantityTextField" prefHeight="26.0" prefWidth="272.0" promptText="Quantité seuil" HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets left="15.0" right="18.0" top="4.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+                <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onSubmitProduct" prefHeight="26.0" prefWidth="387.0" style="-fx-background-color: #3185FC;" text="Soumettre" textFill="WHITE">
+                    <padding>
+                        <Insets left="11.0" />
+                    </padding>
+                    <VBox.margin>
+                        <Insets bottom="9.0" left="14.0" right="15.0" top="13.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
